@@ -7,6 +7,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { TarjetaFormComponent } from './components/tarjeta-form/tarjeta-form/tarjeta-form.component';
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
+import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
     RegisterComponent,
     TarjetaFormComponent,
     FooterComponent,
-    MovieListComponent
+    MovieListComponent,
+    NavbarComponent
   ],
   imports: [
     BrowserModule,
