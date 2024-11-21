@@ -8,6 +8,8 @@ import { TarjetaFormComponent } from './components/tarjeta-form/tarjeta-form/tar
 import { FooterComponent } from './components/footer/footer/footer.component';
 import { MovieListComponent } from './components/movie-list/movie-list.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
+import { FavouriteListComponent } from './components/favourite-list/favourite-list.component';
+import { NotFoundComponent } from './components/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { NavbarComponent } from './components/navbar/navbar/navbar.component';
     TarjetaFormComponent,
     FooterComponent,
     MovieListComponent,
-    NavbarComponent
+    NavbarComponent,
+    FavouriteListComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
