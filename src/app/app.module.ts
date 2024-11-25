@@ -10,6 +10,7 @@ import { MovieListComponent } from './components/movie-list/movie-list.component
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { FavouriteListComponent } from './components/favourite-list/favourite-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
+import { ShowUsersComponent } from './components/show-users/show-users.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
     MovieListComponent,
     NavbarComponent,
     FavouriteListComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    ShowUsersComponent
   ],
   imports: [
     BrowserModule,

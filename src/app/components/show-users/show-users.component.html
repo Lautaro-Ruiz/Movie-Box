@@ -1,0 +1,38 @@
+<section class="box-users">
+    <div class="box-title">
+        <h4 class="title"> LISTA DE USUARIOS </h4>
+    </div> 
+
+    <div class="content-user" *ngIf="users.length === 0">
+        <h5 class="paragraph">No hay usuarios aun...</h5>
+    </div>  
+
+    <div class="content-user" *ngFor="let user of users">
+        <div class="box">
+            <div class="info-user">
+                <h5  class="paragraph"> {{user.firstName}} {{user.lastName}} </h5>
+                <h5  class="paragraph"> {{user.email}} </h5>
+            </div>
+            <div class="box-options">
+                <div class="box-options-1">
+                    <button class="button option" (click)="verBiblioteca(user.id)"> Ver Biblioteca </button>
+                    <button class="button option" (click)="verPagosPendientes(user.id)"> Ver Pagos Pendientes </button>
+                </div>
+                <div class="box-options-2">
+                    <button class="button option" (click)="verDeuda(user.id)">Ver Deuda</button>
+                    <button class="button option" (click)="openDeleteUserAccountModal(user.firstName, user.lastName, user.id)">Dar de Baja</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div *ngIf="openDeleteUserAccount" class="modal-overlay">
+        <div class="modal-content">
+          <h3 class="info-user-to-delete">Está seguro de dar de baja a {{fullnameUserToDelete}}?</h3>
+          <div class="modal-buttons">
+            <button class="button button-modal" (click)="closeDeleteUserAccountModal()">Cancelar</button>
+            <button class="button button-modal" (click)="deleteUserAccount(idUserToDelete)">Confirmar</button>
+          </div>
+        </div>
+    </div>
+
+</section>
