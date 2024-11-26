@@ -1,0 +1,45 @@
+<section class="box-alternative-options">
+    <div class="box-categories" (mouseover)="showCategories()" (mouseleave)="hideCategories()">
+        <div class="box-information-categories">
+            <button class="option-categories">
+                <p>Categorias</p>
+                <img class="img-arrow" src="/assets/arrow_drop_down.png" alt="">
+            </button>
+        </div>
+
+        <div class="categories-container" *ngIf="isFocused">
+            <ul class="categories"> 
+                <li *ngFor="let category of categories" class="li-category">
+                    <button class="button-category" (click)="selectCategory(category)">{{category}}</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div *ngIf = "isLoggedIn">
+        <div *ngIf = "!isAdmin">
+            <div class="box-fav-list">
+                <button class="button" (click) = "navegarFavouriteList()">Lista favoritos</button>
+            </div>
+        </div>
+    </div>
+    <div *ngIf = "isLoggedIn">
+        <div *ngIf = !isAdmin>
+            <div class="box-biblioteca">
+                <button class="button" (click)="navegarBiblioteca ()" > Mi biblioteca </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="box-offers">
+        <button class="button" (click)="navegar('ofertas')">Ofertas</button>
+    </div>
+
+    <div *ngIf = "isLoggedIn">
+        <div *ngIf = "isAdmin">
+            <div class="box-users">
+                <button class="button" (click)="navegar('showUsers')">Users</button>
+            </div>
+        </div>
+    </div>
+</section>
