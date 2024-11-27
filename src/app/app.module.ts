@@ -6,7 +6,7 @@ import { AppComponent } from './app.component';
 import { RegisterComponent } from './components/register/register.component';
 import { TarjetaFormComponent } from './components/tarjeta-form/tarjeta-form/tarjeta-form.component';
 import { FooterComponent } from './components/footer/footer/footer.component';
-import { MovieListComponentsComponent } from './components/movie-list/movie-list.component';
+import { MovieListComponentsComponent } from './components/movie-list-components/movie-list-components.component';
 import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { FavouriteListComponent } from './components/favourite-list/favourite-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
