@@ -13,6 +13,7 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ShowUsersComponent } from './components/show-users/show-users.component';
 import { AlternativeOptionsComponent } from './components/alternative-options/alternative-options/alternative-options.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
+import { EntregasPendientesComponent } from './components/entregas-pendientes/entregas-pendientes.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { PerfilComponent } from './components/perfil/perfil.component';
     NotFoundComponent,
     ShowUsersComponent,
     AlternativeOptionsComponent,
-    PerfilComponent
+    PerfilComponent,
+    EntregasPendientesComponent
   ],
   imports: [
     BrowserModule,

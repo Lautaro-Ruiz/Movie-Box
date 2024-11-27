@@ -1,0 +1,38 @@
+<section class="box-entregas-pendientes">
+  <div class="box-title">
+    <h4 class="title">ENTREGAS PENDIENTES DE {{ usuarioActual?.firstName?.toUpperCase() }} {{ usuarioActual?.lastName?.toUpperCase() }}</h4>
+  </div> 
+
+  <div class="box-total-carrito" *ngIf="entregasPendientes.length > 0">
+    <p class="paragraph"> Total del carrito: ARS $ {{totalCarrito}} </p>
+    <div class="box-opciones-con-entrega">
+      <button class="button aceptar-todas" (click)="aceptarTodasLasEntregas()">Aceptar todas</button>
+      <button class="button rechazar-todas" (click)="rechazarTodasLasEntregas()">Rechazar todas</button>
+    </div>
+  </div>
+
+  <div class="box-films" *ngIf="entregasPendientes.length > 0; else noPendientes">
+
+    <div class="box-film-options" *ngFor="let film of entregasPendientes">
+      <div class="box">
+        <div class="box-film">
+          <img class="image" [src]="film.image" alt="Imagen no disponible">
+          <p class="title-text">{{film.title}}</p>
+        </div> 
+  
+        <div class="box-options">
+          <button class="button entrega" (click)="aceptarEntrega(film)">Aceptar</button>
+          <button class="button" (click)="rechazarEntrega(film)">Rechazar</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <ng-template #noPendientes>
+    <div class="box-empty">
+      <p class="text-empty">No hay entregas pendientes.</p>
+    </div>
+  </ng-template>
+</section>
+
