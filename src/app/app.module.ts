@@ -14,6 +14,7 @@ import { ShowUsersComponent } from './components/show-users/show-users.component
 import { AlternativeOptionsComponent } from './components/alternative-options/alternative-options/alternative-options.component';
 import { PerfilComponent } from './components/perfil/perfil.component';
 import { EntregasPendientesComponent } from './components/entregas-pendientes/entregas-pendientes.component';
+import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { EntregasPendientesComponent } from './components/entregas-pendientes/en
     ShowUsersComponent,
     AlternativeOptionsComponent,
     PerfilComponent,
-    EntregasPendientesComponent
+    EntregasPendientesComponent,
+    RecuperarContrasenaComponent
   ],
   imports: [
     BrowserModule,
