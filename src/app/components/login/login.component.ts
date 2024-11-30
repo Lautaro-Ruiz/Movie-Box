@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { UserService } from 'src/app/services/user.service';
-import { AdminService } from 'src/app/services/admin.service'; 
+import { UserService } from 'src/app/services/user-service.service';
+import { AdminService } from 'src/app/services/admin-service.service'; 
 import { User } from 'src/app/models/user';
 import { Admin } from 'src/app/models/admin';
 import { SharedServicesService } from 'src/app/services/shared-services.service';
+import { ValidacionUserPersonalizada } from 'src/app/validaciones/validacion-user-personalizada';
 
 @Component({
   selector: 'app-login',
@@ -23,10 +24,11 @@ export class LoginComponent implements OnInit {
 
 
   loginForm = new FormGroup({
-    email: new FormControl('', [Validators.required, Validators.email]),
+    email: new FormControl('', [Validators.required, Validators.email, Validators.pattern(/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/)]),
     password: new FormControl('', [
       Validators.required,
       Validators.minLength(6),
+      ValidacionUserPersonalizada.minDosNumeros()
     ]),
   });
 
@@ -62,7 +64,6 @@ export class LoginComponent implements OnInit {
       
       if (isUserValid.isUser) {
         this.successMessage = 'Bienvenido a RosaGomezRuiz Peliculas';
-        this.userService.setUsuarioActual(isUserValid.user!);
         this.isAdmin = false;
         this.isLoggedIn = true;
         this.sharedService.setLogged(true)
