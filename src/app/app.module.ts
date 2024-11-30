@@ -16,6 +16,7 @@ import { EntregasPendientesComponent } from './components/entregas-pendientes/en
 import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/recuperar-contrasena.component';
 import { InicioComponent } from './components/inicio/inicio.component';
 import { OfertasComponent } from './components/ofertas/ofertas.component';
+import { TarjetaComponent } from './components/tarjeta/tarjeta/tarjeta.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +34,8 @@ import { OfertasComponent } from './components/ofertas/ofertas.component';
     EntregasPendientesComponent,
     RecuperarContrasenaComponent,
     InicioComponent,
-    OfertasComponent
+    OfertasComponent,
+    TarjetaComponent
   ],
   imports: [
     BrowserModule,

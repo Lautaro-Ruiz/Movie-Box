@@ -1,0 +1,488 @@
+*{
+    text-align: center !important;
+}
+
+h4{
+    color: aliceblue;
+}
+
+.margenBoton {
+    margin-top: 20px;
+}
+
+.cancelar{
+    margin-left: 1rem !important;
+}
+
+#exitoCompra {
+    font-size: 30px;
+    color: rgb(18, 164, 18);
+    font-style: italic;
+    font-weight: bold;
+}
+
+.box-tarjeta-agregada{
+    margin-block: 1rem;
+    display: grid;
+    justify-content: center;
+}
+
+.chip {
+    width: 40px;
+    height: 30px;
+    background: linear-gradient(135deg, #d1cdbb, #b2ae94);
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.2rem;
+}
+
+.tarjeta {
+    position: relative;
+    background: linear-gradient(135deg, #323232, #1a1a1a);
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 320px;
+    height: 180px;
+    color: #fff;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.box-datos{
+    background-color: transparent;
+}
+
+.dato-tarjeta{
+    background: #2f3031;
+    color: #f0f0f0;
+    padding: 0.2rem;
+    margin: 0;
+}
+
+.vencimiento{
+    text-align: center;
+}
+
+.nTarjeta{
+    letter-spacing: 0.3rem;
+    text-align: center;
+}
+
+.last-data{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #2f3031;
+}
+
+.box-fullname{
+    display: flex;
+}
+
+.fullname{
+    width: max-content;
+    padding-inline: 0.8rem;
+}
+
+.tipo-tarjeta{
+    text-align: right;
+    width: max-content;
+}
+
+
+.visa-logo{
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+}
+
+.mastercard-logo{
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+}
+
+.box-options{
+    display: flex;
+    justify-content: center;
+    margin-block: 0.4rem;
+}
+
+.show-buttons{
+    display: grid;
+    justify-content: center;
+}
+
+#yes{
+    padding-inline: 1.5rem;
+    margin-right: 1rem;
+}
+
+#newCard{
+    margin-right: 1rem;
+}
+
+.button{
+    padding-inline: 0.4rem;
+    font-size: 1.1rem;
+    padding-block: 0.4rem;
+    background-color: rgb(130, 130, 130);
+    border: 1px solid transparent;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    cursor: pointer;
+    color: white;
+}
+
+.button:hover{
+    background-color: rgb(164, 164, 164);
+    border-radius: 1rem;
+}
+
+.tarjeta-form-overlay {
+    position: fixed; /* Para que se mantenga en la pantalla */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro real */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    padding: 2rem; /* Espaciado alrededor del formulario */
+    border-radius: 10px; /* Bordes redondeados */
+    z-index: 1000; /* Asegúrate de que esté sobre otros elementos */
+    color: white; /* Color del texto */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+    width: 30rem;
+}
+
+.cancel-form{
+    padding-inline: 0.6rem;
+    font-size: 1.3rem;
+    padding-block: 0.2rem;
+    background-color: rgb(130, 130, 130);
+    border: 1px solid transparent;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    cursor: pointer;
+    color: white;
+    position: absolute; /* Posicionamiento absoluto dentro del contenedor */
+    top: 10px; /* Ajusta la distancia desde la parte superior */
+    right: 40px; /* Ajusta la distancia desde la parte derecha */
+}
+
+.box-error{
+    display: grid;
+    text-align: center;
+}
+
+.box-errors{
+    background-color: transparent;
+    margin-top: 0.2rem;
+    color: rgb(236, 32, 32);
+}
+
+.box-result{
+    background-color: transparent;
+    margin-top: 0.2rem;
+    color: rgb(16, 119, 178);
+}
+
+.box-cvc{
+    display: flex;
+    flex-direction: column;
+    justify-content:center;
+}
+
+.box-content-cvc{
+    position: fixed; /* Para que se mantenga en la pantalla */
+    top: 20%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro real */
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgba(0, 0, 0, 0.8); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */ 
+    padding: 2rem; /* Espaciado alrededor del formulario */
+    border-radius: 10px;
+}
+
+.field{
+    text-align: center;
+    background-color: transparent;
+    color: aliceblue;
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 1rem;
+}
+
+.box-field{
+    display: flex;
+    flex-direction: column;
+    padding: 0.2rem;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background-color: transparent;
+}
+
+.box-field-password{
+    display: flex;
+    align-items: center;
+    padding: 0.2rem;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background-color: transparent;
+}
+
+.bi{
+    color: #0056b3; 
+    font-size: 1.5rem;
+    background-color: transparent;
+}
+
+.form{
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+}
+
+.input-cvc{
+    display: flex;
+    justify-content: center;
+    margin-block: 0.2rem;
+    font-size: 1rem;
+    height: 2rem;
+    width: 12rem;
+    border: 0.1rem solid transparent;
+    outline: 0.1rem solid transparent;
+    border-radius: 0.5rem;
+    background-color: aliceblue;
+}
+
+.input-cvc::placeholder{
+    color: grey;
+    padding: 0.4rem;
+    background-color: aliceblue;
+    letter-spacing: 0.1rem;
+}
+
+.input-cvc:focus{
+    color: grey;
+    padding: 0.4rem;
+    background-color: aliceblue;
+    letter-spacing: 0.1rem;
+}
+
+.box-result{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    font-weight: 600;
+    font-size: 1.1rem;
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2000;
+}
+
+.loading-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.spinner {
+    width: 50px;
+    height: 50px;
+    border: 6px solid rgba(255, 255, 255, 0.3);
+    border-top-color: white;
+    border-radius: 50%;
+    animation: spin 1s infinite linear;
+    margin-bottom: 1rem;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
+.guide{
+    margin-bottom: 1rem;
+}
+
+.card-is-empty{
+    display: block;
+    margin-block: 4rem;
+    justify-content: center;
+}
+
+.cash{
+    margin-block: 2rem;
+}
+
+.cancel{
+    margin-right: 1rem;
+}
+
+.box-alert{
+    margin-block: 1rem;
+}
+
+.card-exist{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-block: 0.4rem;
+}
+
+.edit{
+    margin-left: 0.8rem;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+#button-cancel-edit-card{
+    margin-right: 0.8rem;
+}
+
+.button-option-edit-card,
+.button-edit-tarjeta{
+    border: none;
+    padding: 0.4rem;
+    cursor: pointer;
+    font-size: 1.2rem;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    border: 1px solid transparent;
+    background-color: rgb(130, 130, 130);
+    color: white;
+}
+
+.button-option-edit-card{
+    padding-inline: 0.7rem;
+}
+
+.button-option-edit-card:hover,
+.button-edit-tarjeta:hover{
+    background-color: rgb(164, 164, 164);
+    border-radius: 1rem;
+}
+
+.form-password{
+    position: fixed; /* Para que se mantenga en la pantalla */
+    top: 30%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro real */
+    z-index: 1000;
+    background-color: rgba(51, 51, 51, 0.8); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 2rem; /* Espaciado alrededor del formulario */
+    border-radius: 10px;
+}
+
+.field{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    color: aliceblue;
+    margin-bottom: 1rem;
+}
+
+.box-field{
+    display: flex;
+    padding: 0.2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background-color: transparent;
+}
+
+.box-eye{
+    margin: 0%;
+    background-color: transparent;
+    margin-left: 1rem;
+}
+
+.box-input-password{
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+}
+
+#input-password{
+    display: flex;
+    justify-content: center;
+    margin-block: 0.2rem;
+    font-size: 1rem;
+    height: 2rem;
+    width: 12rem;
+    border: 0.1rem solid transparent;
+    outline: 0.1rem solid transparent;
+    border-radius: 0.5rem;
+    background-color: aliceblue;
+}
+
+#input-password::placeholder{
+    color: grey;
+    padding: 0.2rem;
+    background-color: aliceblue;
+}
+
+#input-password:focus{
+    color: grey;
+    padding: 0.2rem;
+    background-color: aliceblue;
+}
+
+.box-options-password{
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box-error-card{
+    margin-top: 0.2rem;
+    color: rgb(205, 25, 25);
+}
+
+.formEditCard{
+    margin: 0%;
+    background-color: transparent;
+    padding: 0%;
+}
+
+#numberCard{
+    width: 18rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+}
+
+.input-edit{
+    outline: none;
+    border: none;
+}
+
+.fullname-input{
+    width: 6.25rem;
+    padding-inline: 0.67rem;
+}
+
