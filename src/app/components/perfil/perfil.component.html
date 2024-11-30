@@ -1,0 +1,499 @@
+<section class="profile">
+  <section class="box-mi-perfil">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" class="icon">
+      <path class="path-icon" d="M12 2C17.5228 2 22 6.47715 22 12C22 17.5228 17.5228 22 12 22C6.47715 22 2 17.5228 2 12C2 6.47715 6.47715 2 12 2ZM12.1597 16C10.1243 16 8.29182 16.8687 7.01276 18.2556C8.38039 19.3474 10.114 20 12 20C13.9695 20 15.7727 19.2883 17.1666 18.1081C15.8956 16.8074 14.1219 16 12.1597 16ZM12 4C7.58172 4 4 7.58172 4 12C4 13.8106 4.6015 15.4807 5.61557 16.8214C7.25639 15.0841 9.58144 14 12.1597 14C14.6441 14 16.8933 15.0066 18.5218 16.6342C19.4526 15.3267 20 13.7273 20 12C20 7.58172 16.4183 4 12 4ZM12 5C14.2091 5 16 6.79086 16 9C16 11.2091 14.2091 13 12 13C9.79086 13 8 11.2091 8 9C8 6.79086 9.79086 5 12 5ZM12 7C10.8954 7 10 7.89543 10 9C10 10.1046 10.8954 11 12 11C13.1046 11 14 10.1046 14 9C14 7.89543 13.1046 7 12 7Z"></path>
+    </svg>
+    <h2 class="sub-title">Mi perfil</h2>
+  </section>
+
+  <section class="box-datos-personales">
+    <h3 class="sub-title">Datos personales</h3>
+    <div class="container">
+      <h4>Nombre</h4>
+      <div *ngIf = "!isAdmin">
+        <div class="contenido-infomacion-personal">
+          <div class="box-1">
+            <p *ngIf="!isEditingFirstName" class="paragraph">{{ usuarioActual?.firstName }}</p>
+            <form action="#" [formGroup]="formGroupFirstName">
+              <input class="edit-input" *ngIf="isEditingFirstName" formControlName="firstname"/>
+            </form>
+            
+            <button class="edit" *ngIf="!isEditingFirstName" (click)="toggleEditFirstame()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#141414">
+                <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+              </svg>            
+            </button>
+    
+            <div class="options-container">
+               <button class="confirm-button" *ngIf="isEditingFirstName" (click)="confirmChangeFirstName()">✔</button>
+               <button class="cancel-button" *ngIf="isEditingFirstName" (click)="cancelEdit()">✖</button>
+            </div>
+          </div>
+  
+          <div *ngIf="!showErrors && firstname_fc?.invalid && (firstname_fc?.dirty || firstname_fc?.touched)" class="errors">
+            <div *ngIf="firstname_fc?.hasError('required')" class="text-danger">El nombre es requerido</div>
+            <div *ngIf="firstname_fc?.hasError('soloLetras')" class="text-danger">Solo letras</div>
+          </div>
+  
+          <div id="resultado-operacion" class="mt-3">{{resultFirstName}}</div>
+        </div>
+      </div>
+
+      <div *ngIf = "isAdmin">
+        <div class="contenido-infomacion-personal">
+          <div class="box-1">
+            <p *ngIf="!isEditingFirstName" class="paragraph">{{ adminActual?.firstName }}</p>
+            <form action="#" [formGroup]="formGroupFirstName">
+              <input class="edit-input" *ngIf="isEditingFirstName" formControlName="firstname"/>
+            </form>
+    
+            <button class="edit" *ngIf="!isEditingFirstName" (click)="toggleEditFirstame()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#141414">
+                <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+              </svg> 
+            </button>
+    
+            <div class="options-container">
+               <button class="confirm-button" *ngIf="isEditingFirstName" (click)="confirmChangeFirstName()">✔</button>
+               <button class="cancel-button" *ngIf="isEditingFirstName" (click)="cancelEdit()">✖</button>
+            </div>
+          </div>
+  
+          <div *ngIf="!showErrors && firstname_fc?.invalid && (firstname_fc?.dirty || firstname_fc?.touched)" class="errors">
+            <div *ngIf="firstname_fc?.hasError('required')" class="text-danger">El nombre es requerido</div>
+            <div *ngIf="firstname_fc?.hasError('soloLetras')" class="text-danger">Solo letras</div>
+          </div>
+  
+          <div id="resultado-operacion" class="mt-3">{{resultFirstName}}</div>
+        </div>
+      </div>
+
+      <h4>Apellido</h4>
+      <div *ngIf = "!isAdmin">
+        <div class="contenido-infomacion-personal">
+          <div class="box-1">
+            <p *ngIf="!isEditingLastName" class="paragraph">{{usuarioActual?.lastName}}</p>
+            <form action="#" [formGroup]="formGroupLastName">
+              <input class="edit-input" *ngIf="isEditingLastName" formControlName="lastname"/>
+            </form>
+    
+            <button class="edit" *ngIf="!isEditingLastName" (click)="toggleEditLastName()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#141414">
+                <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+              </svg> 
+            </button>
+  
+            <div class="options-container">
+               <button class="confirm-button" *ngIf="isEditingLastName" (click)="confirmChangeLastName()">✔</button>
+               <button class="cancel-button" *ngIf="isEditingLastName" (click)="cancelEdit()">✖</button>
+            </div>
+          </div>
+  
+          <div *ngIf="!showErrors && lastname_fc?.invalid && (lastname_fc?.dirty || lastname_fc?.touched)" class="errors">
+            <div *ngIf="lastname_fc?.hasError('required')" class="text-danger">El apellido es requerido</div>
+            <div *ngIf="firstname_fc?.hasError('soloLetras')" class="text-danger">Solo letras</div>
+          </div>
+  
+          <div id="resultado-operacion" class="mt-3">{{resultLastName}}</div>
+        </div>
+      </div>
+
+      <div *ngIf = "isAdmin">
+        <div class="contenido-infomacion-personal">
+          <div class="box-1">
+            <p *ngIf="!isEditingLastName" class="paragraph">{{adminActual?.lastName}}</p>
+            <form action="#" [formGroup]="formGroupLastName">
+              <input class="edit-input" *ngIf="isEditingLastName" formControlName="lastname"/>
+            </form>
+    
+            <button class="edit" *ngIf="!isEditingLastName" (click)="toggleEditLastName()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#141414">
+                <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+              </svg> 
+            </button>
+  
+            <div class="options-container">
+               <button class="confirm-button" *ngIf="isEditingLastName" (click)="confirmChangeLastName()">✔</button>
+               <button class="cancel-button" *ngIf="isEditingLastName" (click)="cancelEdit()">✖</button>
+            </div>
+          </div>
+  
+          <div *ngIf="!showErrors && lastname_fc?.invalid && (lastname_fc?.dirty || lastname_fc?.touched)" class="errors">
+            <div *ngIf="lastname_fc?.hasError('required')" class="text-danger">El apellido es requerido</div>
+            <div *ngIf="firstname_fc?.hasError('soloLetras')" class="text-danger">Solo letras</div>
+          </div>
+  
+          <div id="resultado-operacion" class="mt-3">{{resultLastName}}</div>
+        </div>
+      </div>
+      
+      <div *ngIf = "!isAdmin">
+        <h4>DNI</h4>
+        <div class="contenido-dni">
+          <div class="box-1">
+            <p *ngIf="!isEditingDni" class="paragraph">{{ usuarioActual?.dni }}</p>
+            <form action="#" [formGroup]="formGroupDNI">
+              <input class="edit-input" *ngIf="isEditingDni" formControlName="dni"/>
+            </form>
+    
+            <button class="edit" *ngIf="!isEditingDni" (click)="toggleEditDni()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#141414">
+                <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+              </svg> 
+            </button>
+    
+            <div class="options-container">
+              <button class="confirm-button" *ngIf="isEditingDni" (click)="confirmChangeDNI()">✔</button>
+              <button class="cancel-button" *ngIf="isEditingDni" (click)="cancelEdit()">✖</button>
+            </div>
+          </div>
+
+          <div *ngIf="!showErrors && dni_fc?.invalid && (dni_fc?.dirty || dni_fc?.touched)" class="errors">
+            <div *ngIf="dni_fc?.hasError('required')" class="text-danger">El DNI es requerido</div>
+            <div *ngIf="dni_fc?.hasError('soloNumeros')" class="text-danger">DNI contiene solo numeros</div>
+          </div>
+
+          <div id="resultado-operacion" class="mt-3">{{resultDNI}}</div>
+        </div>
+      </div>
+    </div> 
+  </section>
+
+  <section class="box-datos-de-cuenta">
+    <h3 class="sub-title">Datos de Cuenta</h3>
+    <div class="container">
+      <h4>E-mail</h4>
+      <div *ngIf = "!isAdmin"> 
+        <div class="contenido-datos-de-cuenta">
+          <div class="box-1">
+            <div class="box-1">
+              <p *ngIf="!isEditingEmail" class="paragraph">{{usuarioActual?.email}}</p>
+              <form action="#" [formGroup]="formGroupEmail">
+                <input type="email" class="edit-input" *ngIf="isEditingEmail" formControlName="email"/>
+              </form>
+      
+              <button class="edit" *ngIf="!isEditingEmail" (click)="toggleEditEmail()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#141414">
+                  <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+                </svg> 
+              </button>
+            </div>
+    
+            <div class="options-container">
+              <button class="confirm-button" *ngIf="isEditingEmail" type="submit" (click)="confirmChangeEmail()">✔</button>
+              <button class="cancel-button" *ngIf="isEditingEmail" (click)="cancelEdit()">✖</button>
+            </div>
+          </div>
+  
+          <div *ngIf="!showErrors && email_fc?.invalid && (email_fc?.dirty || email_fc?.touched)" class="errors">
+            <div *ngIf="email_fc?.hasError('required')" class="text-danger">El email es requerido</div>
+            <div *ngIf="email_fc?.hasError('email')" class="text-danger">Formato de Email Incorrecto</div>
+          </div>
+  
+          <div id="resultado-operacion" class="mt-3">{{resultEmail}}</div>
+        </div>
+      </div>
+
+      <div *ngIf = "isAdmin">
+        <div class="contenido-datos-de-cuenta">
+          <div class="box-1">
+            <div class="box-email-edit">
+              <p *ngIf="!isEditingEmail" class="paragraph">{{adminActual?.email}}</p>
+              <form action="#" [formGroup]="formGroupEmail">
+                <input type="email" class="edit-input" *ngIf="isEditingEmail" formControlName="email"/>
+              </form>
+      
+              <button class="edit" *ngIf="!isEditingEmail" (click)="toggleEditEmail()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#141414">
+                  <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+                </svg> 
+              </button>
+            </div>
+    
+            <div class="options-container">
+              <button class="confirm-button" *ngIf="isEditingEmail" type="submit" (click)="confirmChangeEmail()">✔</button>
+              <button class="cancel-button" *ngIf="isEditingEmail" (click)="cancelEdit()">✖</button>
+            </div>
+          </div>
+  
+          <div *ngIf="!showErrors && email_fc?.invalid && (email_fc?.dirty || email_fc?.touched)" class="errors">
+            <div *ngIf="email_fc?.hasError('required')" class="text-danger">El email es requerido</div>
+            <div *ngIf="email_fc?.hasError('email')" class="text-danger">Formato de Email Incorrecto</div>
+          </div>
+  
+          <div id="resultado-operacion" class="mt-3">{{resultEmail}}</div>
+        </div>
+      </div>
+
+      <h4>Contraseña</h4>
+      <div class="contenido-datos-de-cuenta">
+        <div class="box-password">
+          <div class="box-1">
+            <p *ngIf="!isEditingPassword" class="paragraph"> * * * * * * * * </p>
+            <form action="#" [formGroup]="formGroupPassword">
+              <input type="password" class="edit-input" *ngIf="isEditingPassword" formControlName="password"/>
+            </form>
+
+            <button class="edit" *ngIf="!isEditingPassword" (click)="toggleFormToEditPassword()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#141414">
+                <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+              </svg> 
+            </button>
+
+            <div class="options-container">
+              <button class="confirm-button" *ngIf="isEditingPassword" type="submit" (click)="confirmChangePassword()">✔</button>
+              <button class="cancel-button" *ngIf="isEditingPassword" (click)="cancelEdit()">✖</button>
+            </div>
+
+            <div *ngIf="showFormToEditPassword">
+              <div class="form-password">
+                <h5 class="field">Ingrese su contraseña actual para seguir</h5>
+                <div class="box-field">
+                    <div class="box-input-password">
+                      <input id="input-password" 
+                      [(ngModel)]="passwordToVerify" 
+                      [type]="showPassword ? 'text' : 'password'" 
+                      placeholder="Contraseña actual..."
+                      autocomplete="new-password">
+                    </div>
+                    <div class="box-eye">
+                      <button 
+                        type="button" 
+                        class="btn btn-link" 
+                        (click)="toggleShowPassword()">
+                        <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                      </button>
+                    </div>
+                </div>
+                <div class="box-options-password">
+                  <button class="button" (click)="toggleFormToEditPassword()">Cancelar</button>
+                  <button class="button" (click)="verifyActualPasswordToEditNewPassword()">Enviar</button>
+                </div>
+                <div class="box-error">
+                  {{resultInputPassword}}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="!showErrors && password_fc?.invalid && (password_fc?.dirty || password_fc?.touched)" class="box-password">
+            <div class="text-danger" *ngIf="password_fc?.hasError('required')">La contraseña es requerida</div>
+            <div class="text-danger" *ngIf="password_fc?.hasError('minDosNumeros')">La contraseña debe contener mínimo 2 números</div>
+            <div class="text-danger" *ngIf="password_fc?.hasError('minlength')">La contraseña debe contener mínimo 6 caracteres</div>
+          </div>
+  
+          <div id="resultado-operacion" class="mt-3">{{resultPassword}}</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+<div *ngIf = "!isAdmin">
+    <section class="box-domicilios">
+      <h3 class="sub-title">Domicilios</h3>
+      <div class="container">
+        <h4>Direccion</h4>
+        <div class="contenido-datos-domicilios">
+          <div class="box-1">
+            <p *ngIf="!isEditingAddress" class="paragraph"> {{usuarioActual?.address}}</p>
+            <form action="#" [formGroup]="formGroupAddress">
+              <input class="edit-input" *ngIf="isEditingAddress" formControlName="address" />
+            </form>
+    
+            <button class="edit" *ngIf="!isEditingAddress" (click)="toggleEditAddress()">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#141414">
+                <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+              </svg> 
+            </button>
+    
+            <div class="options-container">
+              <button class="confirm-button" *ngIf="isEditingAddress" (click)="confirmChangeAddress()">✔</button>
+              <button class="cancel-button" *ngIf="isEditingAddress" (click)="cancelEdit()">✖</button>
+            </div>
+          </div>
+
+          <div *ngIf="!showErrors && address_fc?.invalid && (address_fc?.dirty || address_fc?.touched)" class="errors">
+            <div *ngIf="address_fc?.hasError('required')" class="text-danger">La direccion es requerida</div>
+          </div>
+
+          <div id="resultado-operacion" class="mt-3">{{resultAddress}}</div>
+        </div>
+      </div>
+    </section>
+</div>
+
+<div *ngIf = "!isAdmin">
+  <section class="box-tarjetas">
+    <h3 class="sub-title">Mis Tarjetas</h3>
+    <div class="container">
+      <div class="box-1">
+
+        <div class="mis-tarjetas">
+          
+          <div class="tarjeta" *ngIf="cardExists">
+            <div class="chip"></div>
+            <div class="box-datos">
+              <p class="dato-tarjeta nTarjeta" *ngIf="!permitirEditarTarjeta"> **** **** **** {{lastFourDigits}}</p>
+              <form class="formEditCard dato-tarjeta nTarjeta" action="#" [formGroup]="cardFormGroup" *ngIf="permitirEditarTarjeta">
+                <input id="numberCard" class="dato-tarjeta nTarjeta input-edit" type="text" formControlName="nTarjeta">
+              </form>
+            </div>
+            <div class="box-datos">
+              <p class="dato-tarjeta vencimiento"  *ngIf="!permitirEditarTarjeta">{{ usuarioActual?.tarjeta?.fechaVencimiento }}</p>
+              <form class="formEditCard dato-tarjeta vencimiento" action="#" [formGroup]="cardFormGroup" *ngIf="permitirEditarTarjeta">
+                <input class="dato-tarjeta vencimiento input-edit" type="text" formControlName="fechaVencimiento">
+              </form>
+            </div>
+            <div class="last-data">
+              <div class="box-fullname">
+                <div class="box-datos">
+                  <p class="dato-tarjeta fullname"  *ngIf="!permitirEditarTarjeta">{{usuarioActual?.tarjeta?.firstName}}</p>
+                  <form class="formEditCard dato-tarjeta" action="#" [formGroup]="cardFormGroup" *ngIf="permitirEditarTarjeta">
+                    <input id="firstname" class="dato-tarjeta fullname-input input-edit firstname-edit" type="text" formControlName="firstName">
+                  </form>
+                </div>
+                <div class="box-datos">
+                  <p class="dato-tarjeta fullname"  *ngIf="!permitirEditarTarjeta">{{usuarioActual?.tarjeta?.lastName}}</p>
+                  <form class="formEditCard dato-tarjeta" action="#" [formGroup]="cardFormGroup" *ngIf="permitirEditarTarjeta">
+                    <input id="lastname" class="dato-tarjeta fullname-input input-edit" type="text" formControlName="lastName">
+                  </form>
+                </div>
+              </div>
+              <div class="dato-tarjeta tipo-tarjeta"><img [ngClass]="imgTypeCardClass" src="{{typeCard}}" alt=""></div>
+            </div>
+          </div>
+
+          <div class="non-existent-card" *ngIf="!cardExists">
+            <p class="paragraph">Aun no tiene una tarjeta cargada...</p>
+          </div>
+
+        <div class="box-opciones-tarjeta">
+              <button *ngIf="!cardExists" class="button-new-tarjeta" (click)="showFormAddCard()"> 
+                Agregar Tarjeta
+              </button>
+              <div *ngIf="formNewCard && showFormularioAddCard" class="tarjeta-form-overlay">
+                <button class="cancel-form" (click)="hideFormAddCard()">X</button>
+                <app-tarjeta-form></app-tarjeta-form>
+              </div>
+
+              <div *ngIf="cardExists" class="card-exist">
+                
+                <button *ngIf="showOptionButtonsToCard" class="button-delete" (click)="openDeleteCard()">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#121213">
+                    <path d="M17 6H22V8H20V21C20 21.5523 19.5523 22 19 22H5C4.44772 22 4 21.5523 4 21V8H2V6H7V3C7 2.44772 7.44772 2 8 2H16C16.5523 2 17 2.44772 17 3V6ZM9 11V17H11V11H9ZM13 11V17H15V11H13ZM9 4V6H15V4H9Z"></path>
+                  </svg>
+                </button>
+                <button *ngIf="showOptionButtonsToCard" class="edit button-edit-tarjeta" (click)="toggleFormPassword()">
+                  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="#121213">
+                    <path d="M16.6256 3.1285L9.29145 10.4626L9.29886 14.7098L13.537 14.7024L20.8682 7.37114C21.5912 8.75438 22 10.3278 22 11.9967C22 17.5196 17.5228 21.9967 12 21.9967C6.47715 21.9967 2 17.5196 2 11.9967C2 6.47386 6.47715 1.9967 12 1.9967C13.6689 1.9967 15.2423 2.40553 16.6256 3.1285ZM20.4853 2.09721L21.8995 3.51142L12.7071 12.7038L11.2954 12.7063L11.2929 11.2896L20.4853 2.09721Z"></path>
+                  </svg>
+                </button>
+
+                <div *ngIf="showFormDeleteCard" class="modal-overlay">
+                  <div class="modal-content">
+                    <h3>¿Eliminar Tarjeta actual?</h3>
+                    <div class="modal-buttons">
+                      <button class="cancel-button-logout" (click)="closeDeleteCard()">Cancelar</button>
+                      <button class="confirm-button-logout" (click)="deleteCard()">Confirmar</button>
+                    </div>
+                  </div>
+                </div>
+
+                <div *ngIf="showFormularioPassword">
+                  <div class="form-password">
+                    <h5 class="field">Ingrese su contraseña para seguir</h5>
+                    <div class="box-field">
+                        <div class="box-input-password">
+                          <input id="input-password" 
+                          [(ngModel)]="passwordToEdit" 
+                          [type]="showPassword ? 'text' : 'password'" 
+                          placeholder="Contraseña..."
+                          autocomplete="new-password">
+                        </div>
+                        <div class="box-eye">
+                          <button 
+                            type="button" 
+                            class="btn btn-link" 
+                            (click)="toggleShowPassword()">
+                            <i [ngClass]="showPassword ? 'bi bi-eye-slash' : 'bi bi-eye'"></i>
+                          </button>
+                        </div>
+                    </div>
+                    <div class="box-options-password">
+                      <button class="button" (click)="toggleFormPassword()">Cancelar</button>
+                      <button class="button" (click)="verifyPassword()">Enviar</button>
+                    </div>
+                    <div class="box-error">
+                      {{resultInputPassword}}
+                    </div>
+                  </div>
+                </div>
+
+                <div class="box-options-edit-card" *ngIf="activeOptionsEditCard">
+                  <button id="button-cancel-edit-card" class="button-option-edit-card" (click)="cancelEditCard()">✖</button>
+                  <button class="button-option-edit-card" (click)="confirmEditCard()">✔</button>
+                </div>
+              
+              </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="box-errors">
+      <section class="box-error" *ngIf="firstnameCard?.invalid && (firstnameCard?.dirty || firstnameCard?.touched)">
+          <div *ngIf="firstnameCard?.hasError('required')" class="error-message">El nombre es requerido.</div>
+          <div *ngIf="firstnameCard?.hasError('soloLetras')" class="error-message">El nombre debe contener solo letras.</div>
+      </section>
+  
+      <section class="box-error" *ngIf="lastnameCard?.invalid && (lastnameCard?.dirty || lastnameCard?.touched)">
+          <div *ngIf="lastnameCard?.hasError('required')" class="error-message"> El apellido es requerido.</div>
+          <div *ngIf="lastnameCard?.hasError('soloLetras')" class="error-message">El apellido debe contener solo letras.</div>
+      </section>
+  
+      <section class="box-error" *ngIf="numberCard && (numberCard.invalid && (numberCard.dirty || numberCard.touched))">
+          <div *ngIf="numberCard.hasError('required')" class="error-message">El Nº de tarjeta es requerido.</div>
+          <div *ngIf="numberCard.hasError('soloNumeros')" class="error-message">La tarjeta debe tener solo numeros. </div>
+          <div *ngIf="numberCard.hasError('validarTarjetaLongitud')" class="error-message">El Nº de tarjeta son 16 digitos.</div>
+      </section>
+      
+      <section class="box-error" *ngIf="fechaVencimientoCard && (fechaVencimientoCard.invalid && (fechaVencimientoCard.dirty || fechaVencimientoCard.touched))">
+          <div *ngIf="fechaVencimientoCard.hasError('required')">La fecha de vencimiento es requerida.</div>
+          <div *ngIf="fechaVencimientoCard.hasError('validarFormatoFechaVencimiento')">Formato fecha de vencimiento debe ser MM/YY.</div>
+          <div *ngIf="fechaVencimientoCard.hasError('validarFechaNoExpirada')">Tarjeta vencida.</div>
+      </section>
+    </div>
+    <div class="box-errors box-error">{{resultEditCard}}</div>
+  </section>
+</div>
+
+  <section class="box-logout">
+    <div class="container">
+      <div class="contenido-logout">
+        <button class="button-logout logout" (click)="openLogoutModal()">Cerrar sesión</button>
+        <button class="button-logout" (click)="openDeleteAccountModal()" >Eliminar cuenta</button>
+      </div>
+  
+      <div *ngIf="isDeleteAccountModalVisible" class="modal-overlay">
+        <div class="modal-content">
+          <h3>Desea eliminar su cuenta?</h3>
+          <div class="modal-buttons">
+            <button class="cancel-button-logout" (click)="closeDeleteAccountModal()">Cancelar</button>
+            <button class="confirm-button-logout" (click)="deleteAccount()">Confirmar</button>
+          </div>
+        </div>
+      </div>
+  
+      <div *ngIf="isLogoutModalVisible" class="modal-overlay">
+        <div class="modal-content">
+          <h3>¿Deseas cerrar sesión?</h3>
+          <div class="modal-buttons">
+            <button class="cancel-button-logout" (click)="closeLogoutModal()">Cancelar</button>
+            <button class="confirm-button-logout" (click)="logout()">Confirmar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</section>
+

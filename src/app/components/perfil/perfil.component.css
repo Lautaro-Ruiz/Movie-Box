@@ -1,0 +1,582 @@
+* {
+    background-color: transparent;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: rgb(215, 219, 223);
+}
+
+#titulo, #detalles-del-user, #configuracion, #componentes-con-opciones, #detalles {
+    text-align: center;
+}
+
+#detalles-del-user, #configuracion {
+    color: #007bff !important;
+}
+
+.profile{
+    display: grid;
+    justify-content: center;
+    margin-block: 1rem;
+}
+
+.box-opciones-tarjeta{
+    margin-block: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.card-exist{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.non-existent-card{
+    display: flex;
+    text-align: center;
+}
+
+.box-datos{
+    background-color: transparent;
+}
+
+.tarjeta {
+    position: relative;
+    background: linear-gradient(135deg, #323232, #1a1a1a);
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 320px;
+    height: 180px;
+    color: #fff;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dato-tarjeta{
+    background: #2f3031;
+    color: #f0f0f0;
+    padding: 0.2rem;
+    margin: 0;
+}
+
+.fullname{
+    width: max-content;
+    padding-inline: 0.8rem;
+    padding-block: 0rem;
+}
+
+.input-edit{
+    outline: none;
+    border: none;
+}
+
+.fullname-input{
+    width: 6.25rem;
+    padding-inline: 0.67rem;
+}
+
+#numberCard{
+    width: 18rem;
+    text-align: center;
+    letter-spacing: 0.5rem;
+}
+
+.vencimiento{
+    text-align: center;
+}
+
+.nTarjeta{
+    letter-spacing: 0.3rem;
+    text-align: center;
+}
+
+.chip {
+    width: 40px;
+    height: 30px;
+    background: linear-gradient(135deg, #d1cdbb, #b2ae94);
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    margin-bottom: 0.2rem;
+}
+
+.delete{
+    width: 28px;
+    height: 28px;
+    fill: none;
+    background-color: transparent;
+}
+
+.last-data{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #2f3031;
+}
+
+.tipo-tarjeta{
+    text-align: right;
+    width: max-content;
+}
+
+.visa-logo{
+    width: 40px;
+    height: 40px;
+    background-color: transparent;
+}
+
+.mastercard-logo{
+    background-color: transparent;
+    width: 40px;
+    height: 40px;
+}
+
+.formEditCard{
+    margin: 0%;
+    background-color: transparent;
+    padding: 0%;
+}
+
+.box-options-edit-card{
+    display: flex;
+    justify-content: center;
+}
+
+#button-cancel-edit-card{
+    margin-right: 0.8rem;
+}
+
+.button-option-edit-card,
+.button-edit-tarjeta,
+.button-delete,
+.button-new-tarjeta{
+    border: none;
+    padding: 0.4rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    border: 1px solid transparent;
+    background-color: rgb(130, 130, 130);
+    color: white;
+}
+
+.button-option-edit-card{
+    font-size: 1.3rem;
+    padding-inline: 0.7rem;
+}
+
+.img-edit-tarjeta{
+    width: 30px;
+    height: 30px;
+    background-color: transparent;
+}
+
+.button-option-edit-card:hover,
+.button-edit-tarjeta:hover,
+.button-delete:hover,
+.button-new-tarjeta:hover{
+    background-color: rgb(164, 164, 164);
+    border-radius: 1rem;
+}
+
+.tarjeta-form-overlay {
+    position: fixed; /* Para que se mantenga en la pantalla */
+    top: 50%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro real */
+    background-color: rgba(0, 0, 0, 0.8); /* Fondo oscuro semitransparente */
+    padding: 2rem; /* Espaciado alrededor del formulario */
+    border-radius: 10px; /* Bordes redondeados */
+    z-index: 1000; /* Asegúrate de que esté sobre otros elementos */
+    color: white; /* Color del texto */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); /* Sombra */
+    width: 30rem;
+}
+
+.cancel-form{
+    padding-inline: 0.6rem;
+    font-size: 1.3rem;
+    padding-block: 0.2rem;
+    background-color: rgb(130, 130, 130);
+    border: 1px solid transparent;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    cursor: pointer;
+    color: white;
+    position: absolute; /* Posicionamiento absoluto dentro del contenedor */
+    top: 10px; /* Ajusta la distancia desde la parte superior */
+    right: 40px; /* Ajusta la distancia desde la parte derecha */
+}
+
+.cancel-form:hover{
+    background-color: rgb(164, 164, 164);
+    border-radius: 0.5rem;
+}
+
+.box-fullname{
+    display: flex;
+}
+
+.form-password{
+    position: fixed; /* Para que se mantenga en la pantalla */
+    top: 30%; /* Centra verticalmente */
+    left: 50%; /* Centra horizontalmente */
+    transform: translate(-50%, -50%); /* Ajusta el centro real */
+    z-index: 1000;
+    background-color: rgba(51, 51, 51, 0.8); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 2rem; /* Espaciado alrededor del formulario */
+    border-radius: 10px;
+}
+
+.field{
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+    color: aliceblue;
+    margin-bottom: 1rem;
+}
+
+.box-field{
+    display: flex;
+    padding: 0.2rem;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 1.5rem;
+    background-color: transparent;
+}
+
+.box-eye{
+    margin: 0%;
+    background-color: transparent;
+    margin-left: 1rem;
+}
+
+.box-input-password{
+    display: flex;
+    justify-content: center;
+    background-color: transparent;
+}
+
+#input-password{
+    display: flex;
+    justify-content: center;
+    margin-block: 0.2rem;
+    font-size: 1rem;
+    height: 2rem;
+    width: 12rem;
+    border: 0.1rem solid transparent;
+    outline: 0.1rem solid transparent;
+    border-radius: 0.5rem;
+    background-color: aliceblue;
+}
+
+#input-password::placeholder{
+    color: grey;
+    padding: 0.2rem;
+    background-color: aliceblue;
+}
+
+#input-password:focus{
+    color: grey;
+    padding: 0.2rem;
+    background-color: aliceblue;
+}
+
+.button{
+    padding-inline: 0.4rem;
+    font-size: 1rem;
+    padding-block: 0.4rem;
+    background-color: rgb(130, 130, 130);
+    border: 1px solid transparent;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    cursor: pointer;
+    color: white;
+}
+
+.button:hover{
+    background-color: rgb(164, 164, 164);
+    border-radius: 1rem;
+}
+
+.box-error{
+    margin-top: 0.2rem;
+    color: rgb(205, 25, 25);
+}
+
+.box-options-password{
+    background-color: transparent;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.box-mi-perfil,
+.box-datos-personales,
+.box-datos-de-cuenta,
+.box-domicilios,
+.box-tarjetas,
+.box-logout{
+    padding-block: 0.4rem;
+    padding-inline: 8rem;
+    margin-bottom: 0.2rem;
+    background-color: #545454;
+}
+
+.box-mi-perfil{
+    padding-top: 0.4rem;
+    padding-bottom: 0.2rem;
+    margin-bottom: 0.2rem;
+    color: aliceblue;
+}
+
+.contenido-datos-domicilios,
+.contenido-dni,
+.contenido-infomacion-personal,
+.contenido-datos-de-cuenta{
+    display: block;
+    text-align: center;
+}
+
+.box-logout{
+    display: flex;
+    justify-content: center;
+}
+
+.button-logout{
+    padding-inline: 0.4rem;
+    font-size: 1.1rem;
+    padding-block: 0.4rem;
+    background-color: rgb(130, 130, 130);
+    border: 1px solid transparent;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    cursor: pointer;
+    color: #141414;
+}
+
+.logout{
+    margin-right: 1rem;
+}
+
+.button-logout:hover{
+    background-color: rgb(164, 164, 164);
+    border-radius: 1rem;
+}
+
+.box-1{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.box-password{
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-email-edit{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.errors{
+    display: flex;
+    justify-content: center;
+    text-align: center;
+}
+
+.box-mi-perfil{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.account{
+    width: 60px;
+    height: 60px;
+    margin-right: 0.3rem;
+}
+
+.container{
+    margin-block: 1rem;
+}
+
+.sub-title{
+    display: flex;
+    justify-content: center;
+}
+
+.img-edit{
+    width: 22px;
+    height: 22px;
+}
+
+.contenido-infomacion-personal{
+    margin-bottom: 1rem;
+}
+
+.paragraph{
+    display: flex;
+    font-size: 1.1rem;
+    align-items: center;
+    margin: 0%;
+    margin-top: 0.2rem;
+    color: rgb(206, 198, 198);
+}
+
+.edit{
+    margin-left: 0.8rem;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+}
+
+.confirm-button{
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 2rem;
+    background-color: rgb(7, 185, 7);
+    margin-right: 0.2rem;
+    padding-inline: 0.4rem;
+}
+
+.cancel-button{
+    border: none;
+    font-size: 1.2rem;
+    border-radius: 2rem;
+    background-color: rgb(197, 4, 4);
+    padding-inline: 0.4rem;
+}
+
+.options-container{
+    display: flex;
+    align-items: center;
+    margin-left: 1rem;
+}
+
+.edit-input{
+    width: max-content;
+    outline: none;
+    border: none;
+    border-bottom: 0.1rem  #747474 solid;
+    text-align: center;
+    color: aliceblue;
+    width: 13rem;
+    font-size: 1.1rem;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 50;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+
+    background-color: rgba(51, 51, 51, 0.8); 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  }
+  
+  .modal-content {
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  .modal-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .confirm-button-logout, .cancel-button-logout {
+    padding: 0.4rem;
+    cursor: pointer;
+    font-size: 1.1rem;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+  }
+  
+  .confirm-button-logout {
+    background-color: rgb(130, 130, 130);
+    color: #141414;
+    border: none;
+  }
+  
+  .cancel-button-logout {
+    background-color: rgb(130, 130, 130);
+    color: #141414;
+    border: none;
+  }
+
+  .confirm-button-logout:hover,
+  .cancel-button-logout:hover{
+    background-color: rgb(164, 164, 164);
+    border-radius: 1rem;
+}
+
+.box-error{
+    display: grid;
+    text-align: center;
+    background-color: transparent;
+}
+
+.box-errors{
+    margin-top: 0.2rem;
+    background-color: transparent;
+    color: rgb(205, 25, 25);
+}
+
+.no-border {
+    border-top: none; /* Quitar borde superior */
+    border-right: none; /* Quitar borde derecho */
+    border-left: none; /* Quitar borde izquierdo */
+    border-radius: 0; /* Eliminar bordes redondeados si es necesario */
+    background-color: transparent;  
+}
+  
+.input-group {
+    position: relative; /* Asegúrate de que el grupo de entrada tenga una posición relativa */
+    background-color: transparent;  
+}
+  
+.btn-link {
+    z-index: 2; /* Asegúrate de que el botón esté por encima del input */
+    color: #007bff; /* Color del ícono */
+    cursor: pointer; /* Cambia el cursor al pasar por encima */
+    background-color: transparent;
+}
+  
+.btn-link:hover {
+    background-color: transparent;
+    color: #0056b3; /* Color del ícono al pasar el mouse */
+}
+
+.bi{
+    background-color: transparent;
+}
+
+.bi-eye-slash{
+    background-color: transparent;
+}
+
+.bi-eye{
+    background-color: transparent;
+}
+
+.icon {
+    width: 55px;
+    height: 55px;
+}
+
+.path-icon{
+    color: #141414;
+}

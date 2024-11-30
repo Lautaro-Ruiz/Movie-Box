@@ -1,0 +1,163 @@
+.box-entregas-pendientes{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-block: 1.8rem;
+}
+
+.box-title{
+    text-align: center;
+    margin-bottom: 1.7rem;
+    padding: 1rem;
+    padding-block: 0.9rem;
+    background-color: #747474;
+    width: 100%;
+}
+
+.title{
+    margin: 0%;
+    color: aliceblue;
+}
+
+.box-films{
+    display: flex;
+    justify-content: center;
+}
+
+.box-film-options {
+    display: flex; /* Cambiar a flex para alineación central horizontal */
+    justify-content: center;
+    align-items: center;
+}
+
+.box{
+    display: grid;
+    align-items: center;
+}
+
+.box-film{
+    display: flex; /* Cambiar a flex */
+    flex-direction: column; /* Coloca la imagen y el texto en columna */
+    align-items: center; /* Centra la imagen y el texto horizontalmente */
+    overflow: hidden;
+    width: 300px;
+    height: 470px;
+    background-color: black !important;
+    color: white !important;
+    border-radius: 10px !important;
+    margin: 8px;
+    padding: 0.2rem;
+    transition: 0.5s;
+    border: 1px solid white;
+    text-align: center;
+}
+
+.image{
+    height: 350px;
+    width: 215px;
+    margin-block: 1.8rem;
+}
+
+.title-text{
+    margin: 0rem;
+    font-size: 1.2rem;
+    padding-inline: 0.2rem;
+    width: auto;
+    font-weight: 800;
+}
+
+.box-film:hover{
+    box-shadow: rgb(56, 56, 56) 5px 3.5px;
+}
+
+.box-film:hover .image {
+    filter: brightness(0.6); /* Efecto de sombreado en la imagen */
+}
+
+.box-options{
+    display: flex;
+    justify-content: center;
+}
+
+.entrega{
+    margin-right: 1rem;
+}
+
+.button{
+    padding-inline: 0.4rem;
+    font-size: 1.1rem;
+    padding-block: 0.4rem;
+    background-color: rgb(130, 130, 130);
+    border: 1px solid transparent;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    cursor: pointer;
+    color: white;
+}
+
+.button:hover{
+    background-color: rgb(164, 164, 164);
+    border-radius: 1rem;
+}
+
+.box-total-carrito{
+    text-align: center;
+    margin-bottom: 1rem; /* Espacio entre el total y la lista de películas */
+}
+
+.paragraph{
+    font-size: 1.3rem;
+    font-weight: 450;
+    color: aliceblue;
+}
+
+.aceptar-todas {
+    padding: 0.6rem 0.8rem;
+    font-size: 1.1rem;
+    background-color: #4CAF50; /* Verde para indicar aceptación */
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; 
+    margin-right: 1rem;
+}
+  
+.aceptar-todas:hover {
+    background-color: #45a049;
+}
+
+.rechazar-todas{
+    padding: 0.6rem 0.8rem;
+    font-size: 1.1rem;
+    background-color: #c71f1f;
+    color: white;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px; 
+}
+
+.rechazar-todas:hover{
+    background-color: #dd1e1e;
+}
+
+.box-opciones-con-entrega{
+    display: flex;
+    justify-content: center;
+}
+
+.box-empty{
+    border-radius: 0.2rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    background-color: #747474;
+    width: max-content;
+    margin: 0 auto;
+    margin-block: 4rem;
+}
+
+.text-empty{
+    margin: 0%;
+    font-size: 1.5rem;
+}
