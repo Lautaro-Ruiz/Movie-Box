@@ -1,6 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Film } from "../models/film";
 import { HttpClient} from '@angular/common/http';
+import { BehaviorSubject } from "rxjs";
 
 const options = {
   method: "GET",
@@ -90,9 +91,17 @@ export class FilmsFromAPIService {
     800,
     1300,
   ];
+
+  movies = new BehaviorSubject<Film[]>([]);
+  movies$ = this.movies.asObservable();
   
   constructor(private http: HttpClient) {}
 
+  async ngOnInit ()
+  {
+    await this.initializeData();
+  }
+  
   async initializeData() {
     if (this.filmsData.length == 0) {
       const response = await fetch(this.url_JSON);
@@ -107,6 +116,7 @@ export class FilmsFromAPIService {
             ofertas: this.verSiEstaEnOferta(this.precios[i]),
           });
         }
+        this.movies.next (this.filmsData)
       }
     }
   }

@@ -11,6 +11,8 @@ import { NavbarComponent } from './components/navbar/navbar/navbar.component';
 import { FavouriteListComponent } from './components/favourite-list/favourite-list.component';
 import { NotFoundComponent } from './components/not-found/not-found.component';
 import { ShowUsersComponent } from './components/show-users/show-users.component';
+import { InicioComponent } from './components/inicio/inicio.component';
+import { OfertasComponent } from './components/ofertas/ofertas.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { ShowUsersComponent } from './components/show-users/show-users.component
     NavbarComponent,
     FavouriteListComponent,
     NotFoundComponent,
-    ShowUsersComponent
+    ShowUsersComponent,
+    InicioComponent,
+    OfertasComponent
   ],
   imports: [
     BrowserModule,
