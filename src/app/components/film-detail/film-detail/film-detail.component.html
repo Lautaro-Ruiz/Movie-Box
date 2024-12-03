@@ -1,0 +1,111 @@
+<div *ngIf="movie" class="box-film-detail">
+  
+    <div class="box-content-film">
+      <div class="recuadro-film">
+        <div *ngIf = "!isAdmin">
+          <div class="box-star">
+            <button 
+              (click)="toggleFavourite(movie)" 
+              class="button-star"
+            >
+              {{ isFavourite(movie) ? '★' : '☆' }}
+            </button>
+          </div>
+        </div>
+        <img class="film-img" alt="Imagen No Disponible" [src]="movie.image">
+      </div>
+      <div class="film-data">
+        <h3 class="data"> <span class="title-data">YEAR:</span> {{movie.year}} </h3>
+        <h3 class="data"> 
+          <span class="title-data">GENRE:</span> <span *ngFor="let genre of movie?.genre; let last = last" > {{genre}} </span>
+        </h3>
+        <div class="data box-rating">
+          <h3 class="data"> <span class="title-data">RATING:</span> {{movie.rating}} </h3>
+          <img class="star" src="/assets/star.png" alt="">
+        </div>
+        <h3 class="data price"  *ngIf = "movie.precio < 1500"><span class="title-data">PRICE:     </span>${{movie.precio}} </h3>
+        <h3 class="data price"  *ngIf = "movie.precio > 1500"><span class="title-data">PRICE:     </span>${{movie.precio/2}} </h3>
+  
+        <div *ngIf="isLoggedIn && !isAdmin">
+          <div class="box-carrito">
+            <button class="btn btn-primary mt-2" (click)="agregarPeliculaAlCarrito(movie)">
+              Agregar al carrito  
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  
+    <div class="box-description-reviews">
+      <div class="box-description">
+        <h2 class="film-title"> {{ movie.title }} </h2>
+        <div class="description">
+          {{movie.description}}
+        </div>
+      </div>
+      <div class="reviews mt-4">
+          <h2>Reseñas</h2>
+          <div *ngIf="movie?.reviews?.length ?? 0 > 0; else noReviews">
+            <div class="card mt-3" *ngFor="let review of movie.reviews">
+              <div class="card-body position-relative">
+                <!-- Mostrar el contenido de la reseña -->
+                <p class="card-text">{{ review.firstName }} {{review.lastName}}: {{ review.content }}</p>
+        
+                <!-- Mostrar los íconos solo si el usuario logueado es el autor de la reseña -->
+                <div *ngIf="review.userEmail === userActual?.email" class="position-absolute top-0 end-0">
+                  <!-- Icono de Editar -->
+                  <i class="bi bi-pencil-square text-primary me-2" (click)="editReview(review)" style="cursor: pointer;"></i>
+                  <!-- Icono de Eliminar -->
+                  <i class="bi bi-trash text-danger" (click)="confirmDeleteReview(review)" style="cursor: pointer;"></i>
+                </div>
+              </div>
+            </div>
+          </div>
+          
+          
+            <ng-template #noReviews>
+              <div *ngIf = "isLoggedIn && !isAdmin">
+                <p class="paragraph">No hay reseñas aún. ¡Sé el primero en escribir una!</p>
+              </div>
+            </ng-template>
+  
+            <div *ngIf = "isLoggedIn && isAdmin">
+              <p class="paragraph">Los administradores no pueden publicar reseñas</p>
+            </div>
+            
+            <div *ngIf = "!isLoggedIn">
+              <p class="paragraph">Inicie sesión para publicar una reseña</p>
+            </div>
+          
+          <div *ngIf="reviewToDelete" class="alert alert-danger" role="alert">
+            ¿Estás seguro que deseas eliminar esta reseña?
+            <button class="btn btn-danger ms-2" (click)="deleteReview()">Sí</button>
+            <button class="btn btn-secondary ms-2" (click)="cancelDelete()">Cancelar</button>
+          </div>
+          
+          <div *ngIf = "isLoggedIn && !isAdmin">
+            <!-- Formulario para agregar o editar una reseña -->
+            <form (ngSubmit)="addReview()" class="mt-4">
+              <div class="form-group">
+                  <textarea class="form-control" [(ngModel)]="newReview" name="review" placeholder="Escribe tu reseña aquí" rows="2" required></textarea>
+              </div>
+              
+              <!-- Mostrar "Enviar Reseña" cuando no se está editando -->
+              <button *ngIf="!editingReview" type="submit" class="btn btn-primary mt-2">Enviar Reseña</button>
+              
+              <!-- Mostrar botones de confirmar y cancelar si se está editando -->
+              <div *ngIf="editingReview" class="mt-2">
+                  <button type="button" class="button" (click)="confirmEditReview()">Confirmar</button>
+                  <button type="button" class="button" (click)="cancelEdit()">Cancelar</button>
+              </div>
+            </form>
+          </div>
+          
+          <p *ngIf="errorResena" class="text-danger">{{ errorResena }}</p>
+  
+      </div>
+    </div>
+  
+  </div>
+  
+  

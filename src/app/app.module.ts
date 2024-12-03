@@ -17,6 +17,7 @@ import { RecuperarContrasenaComponent } from './components/recuperar-contrasena/
 import { InicioComponent } from './components/inicio/inicio.component';
 import { OfertasComponent } from './components/ofertas/ofertas.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta/tarjeta.component';
+import { FilmDetailComponent } from './components/film-detail/film-detail/film-detail.component';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { TarjetaComponent } from './components/tarjeta/tarjeta/tarjeta.component
     RecuperarContrasenaComponent,
     InicioComponent,
     OfertasComponent,
-    TarjetaComponent
+    TarjetaComponent,
+    FilmDetailComponent
   ],
   imports: [
     BrowserModule,

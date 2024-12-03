@@ -1,0 +1,178 @@
+img {
+    width: 300px;
+    height: 400px;
+}
+
+.box-carrito{
+    display: flex;
+    justify-content: center;
+    margin-top: 1.5rem;
+    margin-bottom: 4.5rem;
+}
+
+.button-shopping-cart{
+    padding: 0.2rem;
+    background: transparent;
+    border: 1px solid transparent;
+    transition: 0.3s;
+}
+
+.button-shopping-cart:hover{
+    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+    background-color: #747474;
+}
+
+.button{
+    margin-right: 1rem;
+    padding-inline: 0.4rem;
+    font-size: 1rem;
+    padding-block: 0.4rem;
+    background-color: rgb(130, 130, 130);
+    border: 1px solid transparent;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    cursor: pointer;
+    color: white;
+}
+
+.recuadro-film{
+    justify-content: center;
+    max-height: 430px;
+}
+
+.film-img{
+    display: flex;
+    justify-content: center;
+    margin: 0 auto;
+    align-items: center;
+    object-fit: contain;
+}
+
+.button:hover{
+    background-color: rgb(164, 164, 164);
+    border-radius: 1rem;
+}
+
+.box-film-detail{
+    display:flex;
+    margin-left: 20rem;
+    margin-bottom: 3rem;
+}
+
+.box-content-film{
+    display: flex;
+    flex-direction: column;
+    padding-inline: 2.5rem;
+    margin-block: 0.3rem;
+    margin: 0%;
+    margin-right: 5rem;
+    margin-top: 0.2rem;
+}
+
+.title-data{
+    font-family:Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    font-size: 1.5rem;
+}
+
+h3{
+    font-size: 1.4rem;
+}
+
+.film-data{
+    margin-top: 0.5rem;
+    color: aliceblue;
+    position: relative;
+    margin-top: 4rem;
+}
+
+.film-title{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    text-align: left;
+    color: aliceblue;
+}
+
+.data{
+    padding-left: 0.5rem;
+    margin: 0%;
+    margin-block: 0.5rem;
+}
+
+.box-rating{
+    display: flex;
+    align-items: center;
+    padding: 0%;
+}
+
+.star{
+    width: 65px;
+    height: 35px;
+}
+
+.box-description-reviews{
+    margin-block: 0.3rem;
+    display: block;
+    padding: 1rem;
+}
+
+.box-description{
+    display: grid;
+    color: aliceblue;
+    padding: 1rem;
+    max-width: 30rem;
+}
+
+.description{
+    margin-top: 1.3rem;
+    font-size: 1.55rem;
+    text-align: left;
+}
+
+.reviews{
+    padding-inline: 1rem;
+    padding-block: 2rem;
+}
+
+h2{
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-weight: 700;
+    color: aliceblue;
+}
+
+
+.shopping-cart-icon{
+    color: aliceblue; /* Cambia el color aquí */
+    width: 35px;
+    height: 35px;
+}
+
+.paragraph{
+    font-size: 1.2rem;
+    font-weight: 500;
+    margin-block: 1rem;
+    color: rgb(16, 119, 178);
+    padding: 0.4rem;
+    text-align: center;
+}
+
+.box-star{
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Centra el botón dentro del contenedor */
+    margin-block:0.7rem;
+}
+
+.button-star {
+    display: flex;
+    justify-content: center;
+    text-align: right !important;
+    border: none;
+    font-size: 40px;
+    background: none;
+    color: white;
+    transition: 0.3s;
+} 
+
+.button-star:hover {
+    color: gold; /* Cambia el color de la estrella al pasar el mouse */
+}
