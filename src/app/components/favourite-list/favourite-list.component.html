@@ -25,7 +25,9 @@
           <button class="button ficha-tecnica" (click)="navegarFilmDetail(film.rank)">Detalles</button>
           <button class="button btn-carrito" (click)="agregarPeliculaAlCarrito(film)">
             <img class="carrito-logo" src="/assets/carrito.png" alt="">
-            <span class="precio">$ {{ film.precio }}</span>
+            <span *ngIf = "film.precioDescuento == undefined" class="precio">$ {{ film.precio }}</span>
+            <span *ngIf = "film.precioDescuento > 0" class="precio">$ <s>{{ film.precio }}</s></span>
+            <span *ngIf = "film.precioDescuento > 0" class="precio">$ {{ film.precioDescuento }}</span>
           </button>
         </div>
       </div>
@@ -40,3 +42,6 @@
     <p class="text-empty">No tienes películas en tu lista de favoritos.</p> 
   </div> 
 </div>
+
+
+  

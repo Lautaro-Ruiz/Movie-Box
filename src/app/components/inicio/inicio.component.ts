@@ -4,8 +4,8 @@ import { FilmsFromAPIService } from 'src/app/services/films-from-api.service';
 import { SharedServicesService } from 'src/app/services/shared-services.service';
 import { FavouriteListService } from 'src/app/services/favourite-list.service';
 import { FilmSearchServiceService } from 'src/app/services/film-search-service.service';
-import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user-service.service';
+import { User } from 'src/app/models/user';
 
 @Component({
   selector: 'app-inicio',
@@ -41,8 +41,8 @@ export class InicioComponent implements OnInit
     }
 
     this.dataFilms.movies$.subscribe (m => {
-      this.films = m;
-      this.filteredFilms = this.films.filter((film: Film) => film.precio <= 1500);
+      // this.filteredFilms = m.map(film => ({ ...film }));
+      this.filteredFilms = m;
     })
 
     if (this.isLoggedIn && !this.isAdmin) {
@@ -130,4 +130,3 @@ export class InicioComponent implements OnInit
     this.sharedService.navegarFavouriteList();
   }
 }
-
