@@ -6,8 +6,8 @@ import { User } from '../models/user';
 import { Film } from '../models/film';
 import { Tarjeta } from '../models/tarjeta';
 import { Admin } from '../models/admin';
-import { AdminService } from '../services/admin-service.service';
-import { useAnimation } from '@angular/animations';
+import { AdminService } from './admin-service.service';
+import { CarritoService } from './carrito.service';
 
 @Injectable({
   providedIn: 'root',
@@ -23,11 +23,16 @@ export class UserService {
   public storedUser: User | null = null;
   public storedAdmin: Admin | null = null;
   public showFormAddCard: BehaviorSubject <boolean | null>;
+  public tarjetaUsuarioSubject = new BehaviorSubject<Tarjeta | null>(null);
+  tarjetaUsuario$ = this.tarjetaUsuarioSubject.asObservable();
+  public bibliotecaSubject = new BehaviorSubject<Film[] | null>(null);
+  biblioteca$ = this.bibliotecaSubject.asObservable();
 
   constructor(
     private http: HttpClient,
     private router: Router,
-    private adminService: AdminService
+    private adminService: AdminService,
+    private carritoService: CarritoService
   ) {
     this.usuarioActualSubject = new BehaviorSubject<User | null>(null);
     this.adminActualSubject = new BehaviorSubject<Admin | null>(null);
@@ -42,6 +47,16 @@ export class UserService {
   {
     this.users = await this.loadUsersFromJSON();
     this.adminService.loadAdminsFromJSON();
+  }
+
+  async updateUserToJSON (user: User)
+  {
+    const url = `${this.urlJSONServer}/${user.id}`;
+    try {
+      await this.http.patch(url, user).toPromise();
+    } catch (error) {
+      console.error('Error al guardar la deuda', error);
+    }
   }
 
   saveUserToStorage(usuario: User | null): void {
@@ -60,7 +75,7 @@ export class UserService {
   }
 
   // Guardar administrador en localStorage
-  private saveAdminToStorage(admin: Admin | null): void {
+  saveAdminToStorage(admin: Admin | null): void {
     if (admin) {
       this.adminActualSubject.next (admin)
       this.adminService.setAdminActual (admin);
@@ -171,15 +186,17 @@ export class UserService {
     let usuarios: any | undefined = []
     try 
     {
-      if (this.users.length === 0) 
+      if (!this.users)
+      {
+        this.users = [];
+      }
+      else if (this.users.length === 0) 
       {
         usuarios = await this.http.get<User[]>(this.urlJSONServer).toPromise();
-        console.log ("USUARIOS QUE TRAE EL JSON: ", usuarios)
         if (usuarios)
         {
-          this.users = [...usuarios]
+          this.users = usuarios
         }
-        
         return usuarios;
       }
     } catch (error) {
@@ -194,16 +211,13 @@ export class UserService {
     let usersAux = await this.loadUsersFromJSON()
     if (usersAux)
     {
-      if (this.users.length != usersAux.length)
+      if (this.users != usersAux)
         {
-          this.users = await this.loadUsersFromJSON();
-          console.log ("USUARIOS QUE TOMA: ", this.users)
+          await this.ngOnInit()
         }
     }
-    
     return new Promise(async (resolve) => {
         let isUserValid = false;
-
         if (this.users)
         {
           this.users.forEach(u => {
@@ -215,11 +229,15 @@ export class UserService {
         }
 
         if (isUserValid) {
-            const user = this.users.find(user => user.email === inputEmail);
-            if (user) {
+            const userAux = this.users.find(user => user.email === inputEmail);
+            if (userAux)
+            {
+              const user = await this.http.get<User>(`${this.urlJSONServer}/${userAux!.id}`).toPromise()
+              if (user) {
                 this.setUsuarioActual(user);
                 resolve({ isUser: true, isAdmin: false, user });
                 return;
+            }
             }
         }
 
@@ -238,7 +256,6 @@ export class UserService {
                 if (isAdminValid) {
                     const admin = admins.find(admin => admin.email == inputEmail);
                     if (admin) {
-                        // this.setAdminActual (admin);
                         this.adminService.setAdminActual(admin); // Almacenar el admin
                         resolve({ isUser: false, isAdmin: true, admin });
                         return;
@@ -269,7 +286,6 @@ export class UserService {
       })
     );
   }
-
 
   async addUser(user: User): Promise<User | undefined> {
     const headers = new HttpHeaders({
@@ -331,15 +347,20 @@ export class UserService {
       film.fechaDeAgregado = new Date().toISOString();
       user.arrayPeliculas.push(film);
     });
-  
-    return await this.actualizarBiblioteca(user.id, user.arrayPeliculas);
+
+    return await this.actualizarBiblioteca(user, user.arrayPeliculas);
   }
 
-  async actualizarBiblioteca(userId: number, arrayPeliculas: Film[]): Promise<{ success: boolean, message: string }> {
-    const url = `${this.urlJSONServer}/${userId}`;
+  async actualizarBiblioteca(user: User, arrayPeliculas: Film[]): Promise<{ success: boolean, message: string }> {
+    const url = `${this.urlJSONServer}/${user.id}`;
+
+    user.arrayPeliculas = arrayPeliculas;
+
+    this.bibliotecaSubject.next (arrayPeliculas);
+    this.saveUserToStorage (user);
   
     try {
-      await this.http.patch<User>(url, { arrayPeliculas }).toPromise();
+      await this.http.patch<User>(url, user).toPromise();
       return { success: true, message: 'Biblioteca actualizada correctamente.' };
     } catch (error) {
       console.error('Error al actualizar la biblioteca:', error);
@@ -392,8 +413,10 @@ export class UserService {
       user.tarjeta = newCard;
       try {
         await this.http.patch(url, user).toPromise();
+        this.tarjetaUsuarioSubject.next (newCard);
         this.usuarioActualSubject.next (user);
         this.showFormAddCard.next (false);
+
         this.saveUserToStorage(user);
         return { success: true, message: 'Tarjeta cargada correctamente.' };
       } catch (error) {
@@ -425,6 +448,26 @@ export class UserService {
     return { success: false, message: 'Error al eliminar la tarjeta. Por favor, inténtalo de nuevo más tarde.' };
   }
 
+  searchAndEditReviewsFromUser (user: User){
+    const storedData = localStorage.getItem('reviewsData');
+    let reviews;
+    if (storedData) {
+      reviews = JSON.parse(storedData);
+      for (let i = 0; i < reviews.length; i++) {
+        console.log ('first for')
+        for (let j=0; j<reviews[i].reviews.length; j++){
+          if (user.id == reviews[i].reviews[j].idUser){
+            console.log ('if for')
+            reviews[i].reviews[j].firstName = user.firstName;
+            reviews[i].reviews[j].lastName = user.lastName;
+            reviews[i].reviews[j].email = user.email;
+          }
+        }
+      }
+      localStorage.setItem('reviewsData', JSON.stringify(reviews));
+    }
+  }
+
   async changeFirstName(user: User, newFirstName: string): Promise<{ success: boolean, message: string }> {
     const url = `${this.urlJSONServer}/${user.id}`;
     user.firstName  = newFirstName; 
@@ -432,6 +475,7 @@ export class UserService {
       await this.http.patch(url, user).toPromise();
       this.usuarioActualSubject.next(user); // Actualizamos el BehaviorSubject con el nuevo valor
       this.saveUserToStorage(user); // Actualizamos el almacenamiento local
+      this.searchAndEditReviewsFromUser (user);
       return { success: true, message: 'Nombre cambiado correctamente.' };
     } catch (error) {
       console.error('Error al cambiar el nombre del usuario:', error);
@@ -460,6 +504,7 @@ export class UserService {
       await this.http.patch(url, user).toPromise();
       this.usuarioActualSubject.next(user); // Actualizamos el BehaviorSubject con el nuevo valor
       this.saveUserToStorage(user); // Actualizamos el almacenamiento local
+      this.searchAndEditReviewsFromUser (user);
       return { success: true, message: 'Apellido cambiado correctamente.' };
     } catch (error) {
       console.error('Error al cambiar el apellido del usuario:', error);
@@ -539,7 +584,8 @@ export class UserService {
 
   async changePassword (user: User, newPassword: string): Promise<{ success: boolean, message: string }> {
     const url = `${this.urlJSONServer}/${user.id}`;
-    user.password  = newPassword; 
+    user.password = newPassword; 
+    this.cambioPasswordUsers(user)
     try {
       await this.http.patch(url, user).toPromise();
       this.usuarioActualSubject.next(user); // Actualizamos el BehaviorSubject con el nuevo valor
@@ -551,9 +597,20 @@ export class UserService {
     }
   }
 
+  cambioPasswordUsers (user: User)
+  {
+    for (let i = 0; i < this.users.length; i++)
+    {
+      if (this.users[i].id == user.id)
+      {
+        this.users[i] = user
+      }
+    }
+  }
+
   async changePasswordAdmin (admin: Admin, newPassword: string): Promise<{ success: boolean, message: string }> {
     const url = `${this.urlJSONServerAdmins}/${admin.id}`;
-    admin.password  = newPassword; 
+    admin.password = newPassword; 
     try {
       await this.http.patch(url, admin).toPromise();
       this.adminActualSubject.next(admin); // Actualizamos el BehaviorSubject con el nuevo valor
@@ -618,16 +675,24 @@ export class UserService {
     }
   }
 
+  async getAdminByEmail(email: string): Promise<Admin | null> {
+    try {
+      const admins = await this.http.get<Admin[]>(this.urlJSONServerAdmins).toPromise() || [];
+      return admins.find(admin => admin.email === email) || null;
+    } catch (error) {
+      console.error('Error al obtener los usuarios:', error);
+      return null; // Manejo de error: devolver null si ocurre un problema
+    }
+  }
+
   async getUserById(id: number): Promise<User | null> {
     try {
         const users = await this.http.get<User[]>(this.urlJSONServer).toPromise() || [];
-        console.log("Fetched Users:", users); // Verifica que se están obteniendo los usuarios
         return users.find(user => user.id === id) || null;
     } catch (error) {
         console.error('Error al obtener los usuarios:', error);
         return null;
     }
-  
   }
   async agregarEntregaPendiente(user: User, peliculas: Film[]): Promise<{ success: boolean, message: string }> {
     const url = `${this.urlJSONServer}/${user.id}`;
@@ -673,11 +738,13 @@ export class UserService {
     await this.http.patch<User>(url, { entregasPendientes: user.entregasPendientes }).toPromise();
   }
 
-  logout(): void {
+  logout(): void 
+  {
     localStorage.removeItem('currentUser');
     localStorage.removeItem('currentAdmin');
     this.usuarioActualSubject.next(null);
     this.isLoggedInSubject.next(false);
+    this.carritoService.carritoDeCompras = [];
 
     this.adminActualSubject.next(null);
     this.adminService.setAdminActual(null);
