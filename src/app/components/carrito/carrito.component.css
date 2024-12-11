@@ -1,0 +1,108 @@
+.box-carrito{
+    margin-block: 2rem;
+}
+
+.title{
+    text-align: center;
+    margin-block: 0.5rem;
+}
+
+.title-text{
+    font-size: 1.75rem;
+}
+
+.box-title{
+    margin-bottom: 1.7rem;
+    padding: 1rem;
+    padding-block: 0.9rem;
+    background-color: #747474;
+}
+
+.title{
+    margin: 0%;
+    color: aliceblue;
+}
+
+.box-empty{
+    border-radius: 0.2rem;
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: aliceblue;
+    background-color: #747474;
+    width: max-content;
+    margin: 0 auto;
+    margin-block: 4rem;
+}
+
+.text-empty{
+    margin: 0%;
+    font-size: 1.5rem;
+}
+
+.box-content-shopping-cart{
+    margin-block: 1rem;
+}
+
+.container{
+    text-align: center;
+    align-items: center;
+}
+
+.film-img{
+    height: 210px;
+    width: 170px;
+    object-fit:contain;
+}
+
+.paragraph{
+    font-size: 1.3rem;
+    font-weight: 450;
+    color: aliceblue;
+}
+
+.column-title{
+    font-size: 1.1rem;
+}
+
+.button{
+    padding-inline: 0.4rem;
+    font-size: 1.1rem;
+    padding-block: 0.4rem;
+    background-color:#0D6EFD;
+    border: 1px solid transparent;
+    transition: border 0.3s ease, border-radius 0.3s ease;
+    cursor: pointer;
+    color: white;
+    border-radius: 0.2rem;
+}
+
+.button:hover{
+    border-radius: 1rem;
+}
+
+.film-table{
+    width: 100%;  
+    border-collapse: collapse;
+    background-color: #747474;
+    color: aliceblue;
+}
+
+.film-table tbody tr:hover{
+    background-color: #949494;
+}
+
+.fila{
+    border: 1px solid #ddd;
+}
+
+.fila th, 
+.fila td{
+    border: 1px solid #ddd;  /* Bordes de las celdas */
+    padding: 8px; 
+}
+
+.last-fila th, .last-fila td{
+    padding: 8px; 
+}

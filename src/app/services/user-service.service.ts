@@ -8,6 +8,8 @@ import { Tarjeta } from '../models/tarjeta';
 import { Admin } from '../models/admin';
 import { AdminService } from './admin-service.service';
 import { CarritoService } from './carrito.service';
+import { AdminService } from './admin-service.service';
+import { CarritoService } from './carrito.service';
 
 @Injectable({
   providedIn: 'root',
@@ -347,6 +349,8 @@ export class UserService {
       film.fechaDeAgregado = new Date().toISOString();
       user.arrayPeliculas.push(film);
     });
+
+    return await this.actualizarBiblioteca(user, user.arrayPeliculas);
 
     return await this.actualizarBiblioteca(user, user.arrayPeliculas);
   }
@@ -764,6 +768,7 @@ export class UserService {
     localStorage.removeItem('currentAdmin');
     this.usuarioActualSubject.next(null);
     this.isLoggedInSubject.next(false);
+    this.carritoService.carritoDeCompras = [];
     this.carritoService.carritoDeCompras = [];
 
     this.adminActualSubject.next(null);

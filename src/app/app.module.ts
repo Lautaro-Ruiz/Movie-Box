@@ -19,6 +19,7 @@ import { OfertasComponent } from './components/ofertas/ofertas.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta/tarjeta.component';
 import { FilmDetailComponent } from './components/film-detail/film-detail/film-detail.component';
 import { PagoDeudaComponent } from './components/pago-deuda/pago-deuda.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +40,8 @@ import { PagoDeudaComponent } from './components/pago-deuda/pago-deuda.component
     OfertasComponent,
     TarjetaComponent,
     FilmDetailComponent,
-    PagoDeudaComponent
+    PagoDeudaComponent,
+    CarritoComponent
   ],
   imports: [
     BrowserModule,
