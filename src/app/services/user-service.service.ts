@@ -8,8 +8,6 @@ import { Tarjeta } from '../models/tarjeta';
 import { Admin } from '../models/admin';
 import { AdminService } from './admin-service.service';
 import { CarritoService } from './carrito.service';
-import { AdminService } from './admin-service.service';
-import { CarritoService } from './carrito.service';
 
 @Injectable({
   providedIn: 'root',
