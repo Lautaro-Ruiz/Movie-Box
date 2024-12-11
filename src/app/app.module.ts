@@ -18,6 +18,7 @@ import { InicioComponent } from './components/inicio/inicio.component';
 import { OfertasComponent } from './components/ofertas/ofertas.component';
 import { TarjetaComponent } from './components/tarjeta/tarjeta/tarjeta.component';
 import { FilmDetailComponent } from './components/film-detail/film-detail/film-detail.component';
+import { PagoDeudaComponent } from './components/pago-deuda/pago-deuda.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FilmDetailComponent } from './components/film-detail/film-detail/film-d
     InicioComponent,
     OfertasComponent,
     TarjetaComponent,
-    FilmDetailComponent
+    FilmDetailComponent,
+    PagoDeudaComponent
   ],
   imports: [
     BrowserModule,
