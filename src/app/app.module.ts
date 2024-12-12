@@ -21,6 +21,7 @@ import { FilmDetailComponent } from './components/film-detail/film-detail/film-d
 import { PagoDeudaComponent } from './components/pago-deuda/pago-deuda.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { AdminCodeComponent } from './components/admin-code/admin-code/admin-code.component';
+import { BibliotecaComponent } from './components/biblioteca/biblioteca/biblioteca.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +44,8 @@ import { AdminCodeComponent } from './components/admin-code/admin-code/admin-cod
     FilmDetailComponent,
     PagoDeudaComponent,
     CarritoComponent,
-    AdminCodeComponent
+    AdminCodeComponent,
+    BibliotecaComponent
   ],
   imports: [
     BrowserModule,
