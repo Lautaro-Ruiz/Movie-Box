@@ -10,7 +10,7 @@
               <input 
                 type="text" 
                 class="form-control no-border input"
-                [class.is-invalid]="loginForm.get('email')?.invalid && loginForm.get('email')?.touched" 
+                [class.is-invalid]="loginForm.get('email')?.invalid && (loginForm.get('email')?.dirty || loginForm.get('email')?.touched)" 
                 id="email" 
                 name="email" 
                 formControlName="email"

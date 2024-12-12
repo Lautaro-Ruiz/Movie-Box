@@ -71,7 +71,15 @@ export class TarjetaComponent {
 
   ngOnInit(): void {
     this.userService.usuarioActual$.subscribe((usuario: User | null) => {
+      let userAux = this.userService.getUserFromStorage();
       this.usuarioActual = usuario;
+      if (userAux && this.usuarioActual)
+      {
+        if (userAux.id != this.usuarioActual.id)
+        {
+          this.usuarioActual = userAux;
+        }
+      }
       this.validarSiTieneTarjeta();
       this.identificarTarjeta ();
     });
